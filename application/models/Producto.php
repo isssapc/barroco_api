@@ -1,6 +1,6 @@
 <?php
 
-class Propiedad extends CI_Model {
+class Producto extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -9,7 +9,7 @@ class Propiedad extends CI_Model {
     public function get_all() {
 
         $sql = "SELECT *
-                FROM propiedad";
+                FROM producto";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -17,15 +17,15 @@ class Propiedad extends CI_Model {
     public function get_one($id) {
 
         $sql = "SELECT p.*
-                FROM propiedad p
-                WHERE p.id_propiedad= $id";
+                FROM producto p
+                WHERE p.id_producto= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
     
       public function get_tipos() {
         $sql = "SELECT *
-                FROM tipo_propiedad";
+                FROM tipo_producto";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -35,8 +35,8 @@ class Propiedad extends CI_Model {
     public function del_one($id) {
 
         $sql = "SELECT p.*
-                FROM propiedad p
-                WHERE p.id_propiedad= $id";
+                FROM producto p
+                WHERE p.id_producto= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -44,24 +44,24 @@ class Propiedad extends CI_Model {
     public function del_many($ids) {
 
         $sql = "SELECT p.*
-                FROM propiedad p
-                WHERE p.id_propiedad= $id";
+                FROM producto p
+                WHERE p.id_producto= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
-    public function create_one($propiedad) {        
-        $this->db->insert("propiedad", $propiedad);
+    public function create_one($producto) {        
+        $this->db->insert("producto", $producto);
         $id= $this->db->insert_id();
         $data= $this->get_one($id);
         return $data;
     }
 
-    public function update_one($propiedad) {
+    public function update_one($producto) {
 
         $sql = "SELECT p.*
-                FROM propiedad p
-                WHERE p.id_propiedad= $id";
+                FROM producto p
+                WHERE p.id_producto= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

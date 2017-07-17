@@ -1,6 +1,6 @@
 <?php
 
-class Caracteristica extends CI_Model {
+class Salida extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -9,7 +9,7 @@ class Caracteristica extends CI_Model {
     public function get_all() {
 
         $sql = "SELECT *
-                FROM caracteristica";
+                FROM salida";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -17,8 +17,8 @@ class Caracteristica extends CI_Model {
     public function get_one($id) {
 
         $sql = "SELECT c.*
-                FROM caracteristica c
-                WHERE c.id_caracteristica= $id";
+                FROM salida c
+                WHERE c.id_salida= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -26,8 +26,8 @@ class Caracteristica extends CI_Model {
     public function del_one($id) {
 
         $sql = "SELECT c.*
-                FROM caracteristica c
-                WHERE c.id_caracteristica= $id";
+                FROM salida c
+                WHERE c.id_salida= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -35,26 +35,26 @@ class Caracteristica extends CI_Model {
     public function del_many($ids) {
 
         $sql = "SELECT c.*
-                FROM caracteristica c
-                WHERE c.id_caracteristica= $id";
+                FROM salida c
+                WHERE c.id_salida= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
-    public function create_one($caracteristica) {
+    public function create_one($salida) {
 
         $sql = "SELECT c.*
-                FROM caracteristica c
-                WHERE c.id_caracteristica= $id";
+                FROM salida c
+                WHERE c.id_salida= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
-    public function update_one($caracteristica) {
+    public function update_one($salida) {
 
         $sql = "SELECT c.*
-                FROM caracteristica c
-                WHERE c.id_caracteristica= $id";
+                FROM salida c
+                WHERE c.id_salida= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
