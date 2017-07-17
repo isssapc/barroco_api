@@ -16,35 +16,35 @@ class Cliente extends CI_Model {
 
     public function get_one($id) {
 
-        $sql = "SELECT d.*
-                FROM cliente d
-                WHERE d.id_cliente= $id";
+        $sql = "SELECT c.*
+                FROM cliente c
+                WHERE c.id_cliente= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
     public function del_one($id) {
 
-        $sql = "SELECT d.*
-                FROM cliente d
-                WHERE d.id_cliente= $id";
+        $sql = "SELECT c.*
+                FROM cliente c
+                WHERE c.id_cliente= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
     public function del_many($ids) {
 
-        $sql = "SELECT d.*
-                FROM cliente d
-                WHERE d.id_cliente= $id";
+        $sql = "SELECT c.*
+                FROM cliente c
+                WHERE c.id_cliente= $ids";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
     public function create_one($cliente) {
 
-        $sql = "SELECT d.*
-                FROM cliente d
+        $sql = "SELECT c.*
+                FROM cliente c
                 WHERE d.id_cliente= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -52,9 +52,9 @@ class Cliente extends CI_Model {
 
     public function update_one($cliente) {
 
-        $sql = "SELECT d.*
-                FROM cliente d
-                WHERE d.id_cliente= $id";
+        $sql = "SELECT c.*
+                FROM cliente c
+                WHERE c.id_cliente= $id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
