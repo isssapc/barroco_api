@@ -19,6 +19,11 @@ class Usuarios extends MY_Controller {
         $this->response($datos);
     }
 
+    public function get_roles_get() {
+        $datos = $this->usuario->get_roles();
+        $this->response($datos);
+    }
+
     public function del_usuario_post($id) {
         $datos = $this->usuario->del_one($id);
         $this->response($datos);

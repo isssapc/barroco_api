@@ -23,9 +23,9 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
     
-      public function get_tipos() {
+      public function get_categorias() {
         $sql = "SELECT *
-                FROM tipo_producto";
+                FROM producto_categoria";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

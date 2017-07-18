@@ -8,8 +8,17 @@ class Usuario extends CI_Model {
 
     public function get_all() {
 
+        $sql = "SELECT u.*, r.nombre AS rol
+                FROM usuario u
+                JOIN rol r ON r.id_rol=u.id_rol";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function get_roles() {
+
         $sql = "SELECT *
-                FROM usuario";
+                FROM rol";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

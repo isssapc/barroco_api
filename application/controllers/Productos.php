@@ -18,6 +18,10 @@ class Productos extends MY_Controller {
         $datos = $this->producto->get_one($id);
         $this->response($datos);
     }
+     public function get_categorias_get() {
+        $datos = $this->producto->get_categorias();
+        $this->response($datos);
+    }
 
     public function get_tipos_get() {
         $datos = $this->producto->get_tipos();

@@ -19,7 +19,7 @@ class Clientes extends MY_Controller {
         $this->response($datos);
     }
 
-    public function del_cliente_post($id) {
+    public function del_cliente_get($id) {
         $datos = $this->cliente->del_one($id);
         $this->response($datos);
     }
