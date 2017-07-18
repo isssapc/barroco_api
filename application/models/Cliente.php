@@ -43,11 +43,11 @@ class Cliente extends CI_Model {
 
     public function create_one($cliente) {
 
-        $sql = "SELECT c.*
-                FROM cliente c
-                WHERE d.id_cliente= $id";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $this->db->insert('cliente', $cliente);
+        $id_cliente = $this->db->insert_id();
+
+        $cliente = $this->get_one($id_cliente);
+        return $cliente;
     }
 
     public function update_one($cliente) {
