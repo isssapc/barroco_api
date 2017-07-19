@@ -19,9 +19,10 @@ class Producto extends CI_Model {
 
         $sql = "SELECT p.*
                 FROM producto p
-                WHERE p.id_producto= $id";
+                JOIN producto_categoria c ON c.id_producto_categoria= p.id_producto_categoria
+                WHERE p.id_producto= $id LIMIT 1";
         $query = $this->db->query($sql);
-        return $query->result_array();
+        return $query->row_array();
     }
 
     public function get_categorias() {
@@ -31,6 +32,10 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
+    /*
+     * 
+     * TODO
+     */
     public function del_one($id) {
 
         $sql = "SELECT p.*
@@ -40,6 +45,10 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
+        /*
+     * 
+     * TODO
+     */
     public function del_many($ids) {
 
         $sql = "SELECT p.*
@@ -57,13 +66,14 @@ class Producto extends CI_Model {
         return $data;
     }
 
-    public function update_one($producto) {
+    public function update_one($id, $props) {
 
-        $sql = "SELECT p.*
-                FROM producto p
-                WHERE p.id_producto= $id";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $where = "id_producto = $id";
+        $sql = $this->db->update_string('producto', $props, $where);
+        $this->db->query($sql);
+
+        $producto = $this->get_one($id);
+        return $producto;
     }
 
 }

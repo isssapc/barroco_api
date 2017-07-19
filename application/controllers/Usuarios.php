@@ -41,9 +41,9 @@ class Usuarios extends MY_Controller {
         $this->response($datos);
     }
 
-    public function update_usuario_post() {
+    public function update_usuario_post($id) {
         $usuario = $this->post("usuario");
-        $datos = $this->usuario->update_one($usuario);
+        $datos = $this->usuario->update_one($id, $usuario);
         $this->response($datos);
     }
 

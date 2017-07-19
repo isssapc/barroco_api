@@ -45,9 +45,9 @@ class Productos extends MY_Controller {
         $this->response($datos);
     }
 
-    public function update_producto_post() {
+    public function update_producto_post($id) {
         $producto = $this->post("producto");
-        $datos = $this->producto->update_one($producto);
+        $datos = $this->producto->update_one($id, $producto);
         $this->response($datos);
     }
 

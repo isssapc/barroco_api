@@ -25,8 +25,9 @@ class Usuario extends CI_Model {
 
     public function get_one($id) {
 
-        $sql = "SELECT u.*
+        $sql = "SELECT u.*, r.nombre AS rol
                 FROM usuario u
+                JOIN rol r ON r.id_rol= u.id_rol
                 WHERE u.id_usuario= $id LIMIT 1";
         $query = $this->db->query($sql);
         return $query->row_array();

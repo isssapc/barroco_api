@@ -36,9 +36,9 @@ class Clientes extends MY_Controller {
         $this->response($datos);
     }
 
-    public function update_cliente_post() {
+    public function update_cliente_post($id) {
         $cliente = $this->post("cliente");
-        $datos = $this->cliente->update_one($cliente);
+        $datos = $this->cliente->update_one($id, $cliente);
         $this->response($datos);
     }
 

@@ -18,11 +18,14 @@ class Cliente extends CI_Model {
 
         $sql = "SELECT c.*
                 FROM cliente c
-                WHERE c.id_cliente= $id";
+                WHERE c.id_cliente= $id LIMIT 1";
         $query = $this->db->query($sql);
-        return $query->result_array();
+        return $query->row_array();
     }
-
+    /*
+     * 
+     * TODO
+     */
     public function del_one($id) {
 
         $sql = "SELECT c.*
@@ -31,7 +34,10 @@ class Cliente extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
-
+    /*
+     * 
+     * TODO
+     */
     public function del_many($ids) {
 
         $sql = "SELECT c.*
@@ -50,13 +56,14 @@ class Cliente extends CI_Model {
         return $cliente;
     }
 
-    public function update_one($cliente) {
+    public function update_one($id, $props) {
 
-        $sql = "SELECT c.*
-                FROM cliente c
-                WHERE c.id_cliente= $id";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $where = "id_cliente = $id";
+        $sql = $this->db->update_string('cliente', $props, $where);
+        $this->db->query($sql);
+
+        $cliente = $this->get_one($id);
+        return $cliente;
     }
 
 }
