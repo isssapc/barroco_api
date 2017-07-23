@@ -17,7 +17,7 @@ class Producto extends CI_Model {
 
     public function get_one($id) {
 
-        $sql = "SELECT p.*
+        $sql = "SELECT p.*, c.nombre AS categoria
                 FROM producto p
                 JOIN producto_categoria c ON c.id_producto_categoria= p.id_producto_categoria
                 WHERE p.id_producto= $id LIMIT 1";
@@ -32,10 +32,19 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
+    public function search_by_nombre($nombre) {
+        $sql = "SELECT *
+                FROM producto p 
+                WHERE p.nombre like '%$nombre%'";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     /*
      * 
      * TODO
      */
+
     public function del_one($id) {
 
         $sql = "SELECT p.*
@@ -45,10 +54,11 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
-        /*
+    /*
      * 
      * TODO
      */
+
     public function del_many($ids) {
 
         $sql = "SELECT p.*

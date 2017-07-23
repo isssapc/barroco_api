@@ -19,6 +19,11 @@ class Clientes extends MY_Controller {
         $this->response($datos);
     }
 
+    public function search_cliente_get($nombre) {
+        $datos = $this->cliente->search_by_nombre($nombre);
+        $this->response($datos);
+    }
+
     public function del_cliente_get($id) {
         $datos = $this->cliente->del_one($id);
         $this->response($datos);

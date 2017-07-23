@@ -22,10 +22,20 @@ class Cliente extends CI_Model {
         $query = $this->db->query($sql);
         return $query->row_array();
     }
+
+    public function search_by_nombre($nombre) {
+        $sql = "SELECT *
+                FROM cliente c 
+                WHERE c.nombre like '%$nombre%'";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     /*
      * 
      * TODO
      */
+
     public function del_one($id) {
 
         $sql = "SELECT c.*
@@ -34,10 +44,12 @@ class Cliente extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
     /*
      * 
      * TODO
      */
+
     public function del_many($ids) {
 
         $sql = "SELECT c.*

@@ -18,14 +18,28 @@ class Productos extends MY_Controller {
         $datos = $this->producto->get_one($id);
         $this->response($datos);
     }
-     public function get_categorias_get() {
+
+    public function get_categorias_get() {
         $datos = $this->producto->get_categorias();
         $this->response($datos);
     }
 
-    public function get_tipos_get() {
-        $datos = $this->producto->get_tipos();
+    public function create_categoria_post() {
+        $categoria = $this->post("categoria");
+        $datos = $this->producto->create_one_categoria($categoria);
         $this->response($datos);
+    }
+
+//    public function get_tipos_get() {
+//        $datos = $this->producto->get_tipos();
+//        $this->response($datos);
+//    }
+
+    public function search_producto_get($nombre) {
+        //$nombre= $this->post("nombre");
+        $datos = $this->producto->search_by_nombre($nombre);
+        $this->response($datos);
+        //$this->response(array($nombre));
     }
 
     public function del_producto_post($id) {

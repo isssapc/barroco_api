@@ -2,43 +2,48 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Inmobiliarias extends MY_Controller {
+class Ordenes extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model("inmobiliaria");
+        $this->load->model("orden");
     }
 
     public function index_get() {
-        $datos = $this->inmobiliaria->get_all();
+        $datos = $this->orden->get_all();
         $this->response($datos);
     }
 
-    public function get_inmobiliaria_get($id) {
-        $datos = $this->inmobiliaria->get_one($id);
+    public function get_orden_get($id) {
+        $datos = $this->orden->get_one($id);
         $this->response($datos);
     }
 
-    public function del_inmobiliaria_post($id) {
-        $datos = $this->inmobiliaria->del_one($id);
+    public function get_formas_pago_get() {
+        $datos = $this->orden->get_formas_pago();
         $this->response($datos);
     }
 
-    public function del_inmobiliarias_post() {
-        $ids = $this->post("id_inmobiliarias");
-        $datos = $this->inmobiliaria->del_many($ids);
+    public function del_orden_post($id) {
+        $datos = $this->orden->del_one($id);
         $this->response($datos);
     }
 
-    public function create_inmobiliaria_post() {
-        $inmobiliaria = $this->post("inmobiliaria");
-        $datos = $this->inmobiliaria->create_one($inmobiliaria);
+    public function del_ordens_post() {
+        $ids = $this->post("id_ordens");
+        $datos = $this->orden->del_many($ids);
         $this->response($datos);
     }
 
-    public function update_inmobiliaria_post() {
-        $inmobiliaria = $this->post("inmobiliaria");
-        $datos = $this->inmobiliaria->update_one($inmobiliaria);
+    public function create_orden_post() {
+        $orden = $this->post("orden");
+        $datos = $this->orden->create_one($orden);
+        $this->response($datos);
+    }
+
+    public function update_orden_post() {
+        $orden = $this->post("orden");
+        $datos = $this->orden->update_one($orden);
         $this->response($datos);
     }
 
