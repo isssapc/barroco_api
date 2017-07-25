@@ -7,6 +7,8 @@ class Ordenes extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("orden");
+        $timezone = 'America/Mexico_City';
+        date_default_timezone_set($timezone);
     }
 
     public function index_get() {
@@ -37,8 +39,11 @@ class Ordenes extends MY_Controller {
 
     public function create_orden_post() {
         $orden = $this->post("orden");
-        $datos = $this->orden->create_one($orden);
-        $this->response($datos);
+        $productos = $this->post("productos");
+        $orden["fecha_creacion"] = date("Y-m-d H:i:s");
+        $datos = $this->orden->create_one($orden, $productos);
+        $result = $this->orden->add_productos_orden($datos["id_orden_compra"], $productos);
+        $this->response(array("orden" => $datos, "result" => $result));
     }
 
     public function update_orden_post() {

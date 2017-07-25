@@ -33,6 +33,15 @@ class Usuario extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_by_email($email) {
+        $sql = "SELECT u.*, r.nombre AS rol
+                FROM usuario u
+                JOIN rol r ON r.id_rol= u.id_rol
+                WHERE u.email= '$email' LIMIT 1";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+
     public function del_one($id) {
 
         $sql = "DELETE FROM usuario WHERE id_usuario=$id LIMIT 1";

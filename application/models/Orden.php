@@ -62,6 +62,21 @@ class Orden extends CI_Model {
         return $data;
     }
 
+    public function add_productos_orden($id_orden, $productos) {
+
+        for ($i = 0; $i < count($productos); $i++) {
+            $productos[$i]["id_orden_compra"] = $id_orden;
+            unset($productos[$i]["nombre"]);
+            unset($productos[$i]["unidad"]);
+        }
+
+        $this->db->insert_batch("orden_compra_producto", $productos);
+        $error = $this->db->error();
+
+        $count = $this->db->affected_rows();
+        return array("count" => $count, "error" => $error);
+    }
+
     public function update_one($id, $props) {
 
         $where = "id_orden_compra = $id";
