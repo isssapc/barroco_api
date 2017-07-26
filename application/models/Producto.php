@@ -25,6 +25,23 @@ class Producto extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_almacen_entrada() {
+
+        $sql = "SELECT 
+                p.id_producto, 
+                p.nombre, 
+                p.unidad, 
+                p.id_producto_categoria, 
+                c.nombre AS categoria, 
+                NULL AS cantidad, 
+                NULL AS num_factura
+                FROM producto p
+                JOIN producto_categoria c ON c.id_producto_categoria= p.id_producto_categoria
+                ORDER BY p.nombre";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     public function get_categorias() {
         $sql = "SELECT *
                 FROM producto_categoria";

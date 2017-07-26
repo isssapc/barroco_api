@@ -19,6 +19,11 @@ class Productos extends MY_Controller {
         $this->response($datos);
     }
 
+    public function get_almacen_entrada_get() {
+        $datos = $this->producto->get_almacen_entrada();
+        $this->response($datos);
+    }
+
     public function get_categorias_get() {
         $datos = $this->producto->get_categorias();
         $this->response($datos);
