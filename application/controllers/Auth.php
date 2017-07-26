@@ -43,14 +43,15 @@ class Auth extends MY_Controller {
         $user = $this->usuario->get_by_email($usuario["email"]);
 
         if (!isset($user)) {
-            $this->response(["error" => "El email o password son incorrectos"], REST_Controller::HTTP_UNAUTHORIZED);
+            //REST_Controller::HTTP_UNAUTHORIZED
+            $this->response(["error" => "El email o password son incorrectos"]);
         }
 
         if ($user["password"] === $usuario["password"]) {
-            unset($usuario["password"]);
+            unset($user["password"]);
             $this->response(["token" => $this->_create_token($user), "usuario" => $user]);
         } else {
-            $this->response(["error" => "El password o email son incorrectos"], REST_Controller::HTTP_UNAUTHORIZED);
+            $this->response(["error" => "El password o email son incorrectos"]);
         }
     }
 

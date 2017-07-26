@@ -11,7 +11,8 @@ class Orden extends CI_Model {
         $sql = "SELECT o.*, c.nombre AS cliente, fp.nombre AS forma_pago 
                 FROM orden_compra o
                 JOIN cliente c ON c.id_cliente= o.id_cliente
-                JOIN forma_pago fp ON fp.id_forma_pago=o.id_forma_pago";
+                JOIN forma_pago fp ON fp.id_forma_pago=o.id_forma_pago
+                ORDER BY o.id_orden_compra DESC";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -37,11 +38,13 @@ class Orden extends CI_Model {
 
     public function del_one($id) {
 
-        $sql = "SELECT o.*
-                FROM orden_compra o
-                WHERE o.id_orden_compra= $id";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        //borramos los productos de la orden
+        $num_prods = $this->del_productos_orden($id);
+        //borramos la orden
+        $this->db->where('id_orden_compra', $id);
+        $this->db->delete('orden_compra');
+        $count = $this->db->affected_rows();
+        return $count;
     }
 
     public function del_many($ids) {
@@ -75,6 +78,13 @@ class Orden extends CI_Model {
 
         $count = $this->db->affected_rows();
         return array("count" => $count, "error" => $error);
+    }
+
+    public function del_productos_orden($id_orden) {
+        $this->db->where('id_orden_compra', $id_orden);
+        $this->db->delete('orden_compra_producto');
+        $count = $this->db->affected_rows();
+        return $count;
     }
 
     public function update_one($id, $props) {

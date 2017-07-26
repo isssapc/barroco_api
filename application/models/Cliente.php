@@ -31,18 +31,12 @@ class Cliente extends CI_Model {
         return $query->result_array();
     }
 
-    /*
-     * 
-     * TODO
-     */
-
     public function del_one($id) {
 
-        $sql = "SELECT c.*
-                FROM cliente c
-                WHERE c.id_cliente= $id";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $this->db->where('id_cliente', $id);
+        $this->db->delete('cliente');
+        $count = $this->db->affected_rows();
+        return $count;
     }
 
     /*

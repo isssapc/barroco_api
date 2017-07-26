@@ -25,8 +25,8 @@ class Usuarios extends MY_Controller {
     }
 
     public function del_usuario_post($id) {
-        $datos = $this->usuario->del_one($id);
-        $this->response($datos);
+        $count = $this->usuario->del_one($id);
+        $this->response(array("count" => $count));
     }
 
     public function del_usuarios_post() {

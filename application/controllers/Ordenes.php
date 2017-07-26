@@ -27,11 +27,11 @@ class Ordenes extends MY_Controller {
     }
 
     public function del_orden_post($id) {
-        $datos = $this->orden->del_one($id);
-        $this->response($datos);
+        $count = $this->orden->del_one($id);
+        $this->response(array("count" => $count));
     }
 
-    public function del_ordens_post() {
+    public function del_ordenes_post() {
         $ids = $this->post("id_ordens");
         $datos = $this->orden->del_many($ids);
         $this->response($datos);

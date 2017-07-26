@@ -46,7 +46,6 @@ class Usuario extends CI_Model {
 
         $sql = "DELETE FROM usuario WHERE id_usuario=$id LIMIT 1";
         $this->db->query($sql);
-
         $count = $this->db->affected_rows();
         return $count;
     }

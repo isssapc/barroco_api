@@ -24,9 +24,9 @@ class Clientes extends MY_Controller {
         $this->response($datos);
     }
 
-    public function del_cliente_get($id) {
-        $datos = $this->cliente->del_one($id);
-        $this->response($datos);
+    public function del_cliente_post($id) {
+        $count = $this->cliente->del_one($id);
+        $this->response(array("count" => $count));
     }
 
     public function del_clientes_post() {
