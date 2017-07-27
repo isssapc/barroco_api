@@ -47,6 +47,13 @@ class Productos extends MY_Controller {
         //$this->response(array($nombre));
     }
 
+    public function search_producto_orden_get($nombre) {
+        //$nombre= $this->post("nombre");
+        $datos = $this->producto->search_producto_orden_by_nombre($nombre);
+        $this->response($datos);
+        //$this->response(array($nombre));
+    }
+
     public function del_producto_post($id) {
         $datos = $this->producto->del_one($id);
         $this->response($datos);

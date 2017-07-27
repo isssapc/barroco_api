@@ -57,6 +57,19 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
+    public function search_producto_orden_by_nombre($nombre) {
+        $sql = "SELECT 
+                p.id_producto, 
+                p.nombre,
+                p.unidad, 
+                NULL AS cantidad, 
+                p.precio_venta
+                FROM producto p 
+                WHERE p.nombre like '%$nombre%'";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     /*
      * 
      * TODO

@@ -26,6 +26,11 @@ class Ordenes extends MY_Controller {
         $this->response($datos);
     }
 
+    public function get_lugares_entrega_get() {
+        $datos = $this->orden->get_lugares_entrega();
+        $this->response($datos);
+    }
+
     public function del_orden_post($id) {
         $count = $this->orden->del_one($id);
         $this->response(array("count" => $count));

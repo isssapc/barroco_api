@@ -36,6 +36,14 @@ class Orden extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_lugares_entrega() {
+
+        $sql = "SELECT ce.* 
+                FROM compra_entrega ce";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     public function del_one($id) {
 
         //borramos los productos de la orden
