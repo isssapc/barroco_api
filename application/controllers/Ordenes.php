@@ -17,8 +17,9 @@ class Ordenes extends MY_Controller {
     }
 
     public function get_orden_get($id) {
-        $datos = $this->orden->get_one($id);
-        $this->response($datos);
+        $orden = $this->orden->get_one($id);
+        $productos= $this->orden->get_orden_productos($id);
+        $this->response(array("orden"=>$orden, "productos"=>$productos));
     }
 
     public function get_formas_pago_get() {

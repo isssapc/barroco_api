@@ -28,6 +28,16 @@ class Orden extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_orden_productos($id) {
+
+        $sql = "SELECT op.*, p.nombre, p.unidad 
+                FROM orden_compra_producto op 
+                JOIN producto p ON p.id_producto = op.id_producto
+                WHERE op.id_orden_compra=$id";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     public function get_formas_pago() {
 
         $sql = "SELECT fp.* 
