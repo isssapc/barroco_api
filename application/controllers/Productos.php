@@ -77,4 +77,53 @@ class Productos extends MY_Controller {
         $this->response($datos);
     }
 
+    public function upload_fichatecnica_post() {
+
+        $id_producto = $this->post('id_producto');
+        $descripcion = $this->post('descripcion');
+
+       
+        
+        $path = "./upload/productos/" . $id_producto . "/";
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, TRUE);
+        }
+
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size'] = 4096; //4MB 1024*4
+        $config['overwrite'] = FALSE;
+        $config['file_ext_tolower'] = TRUE;
+        $config['remove_spaces'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        $file = 'file';
+        if (!$this->upload->do_upload($file)) {
+            $error = $this->upload->error_msg;
+            $this->response(["error" => $error], REST_Controller::HTTP_BAD_REQUEST);
+        } else {
+            $data = $this->upload->data();
+            $filename = $path . $data['file_name'];
+            $id_documento = $this->producto->add_documento($id_producto, $filename, $descripcion);
+
+            // ini resize ------------------------------------------------
+            /*
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $path . $filename;
+            //$config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['width'] = 1200; //1000
+            //$config['height'] = 900;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+            */
+            // fin resize ------------------------------------------------
+
+
+            $this->response(["file_name" => $filename, "id" => $id_documento]);
+        }
+    }
+
 }
