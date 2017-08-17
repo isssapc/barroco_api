@@ -91,7 +91,7 @@ class Productos extends MY_Controller {
 
         $id_producto = $this->post('id_producto');
         $descripcion = $this->post('descripcion');
-
+        $nombre = $this->post('nombre');
 
 
         $path = "./upload/productos/" . $id_producto . "/";
@@ -116,7 +116,7 @@ class Productos extends MY_Controller {
         } else {
             $data = $this->upload->data();
             $filename = $path . $data['file_name'];
-            $id_documento = $this->producto->add_documento($id_producto, $filename, $descripcion);
+            $documento = $this->producto->add_documento($id_producto, $nombre, $filename);
 
             // ini resize ------------------------------------------------
             /*
@@ -132,7 +132,7 @@ class Productos extends MY_Controller {
             // fin resize ------------------------------------------------
 
 
-            $this->response(["file_name" => $filename, "id" => $id_documento]);
+            $this->response(["documento" => $documento]);
         }
     }
 

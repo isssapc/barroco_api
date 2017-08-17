@@ -136,4 +136,37 @@ class Producto extends CI_Model {
         return $producto;
     }
 
+    public function add_documento($id_producto, $nombre, $filename) {
+        $datos = array(
+            "id_producto" => $id_producto,
+            "filename" => $filename,
+            "nombre" => $nombre,
+            "descripcion" => $descripcion
+        );
+
+        $this->db->insert("producto_documento", $datos);
+        $id = $this->db->insert_id();
+
+        $data = $this->get_documento($id);
+        return $data;
+    }
+
+    public function get_documento($id) {
+
+        $sql = "SELECT d.*
+                FROM producto_documento d
+                WHERE d.id_producto_documento= $id LIMIT 1";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+
+    public function get_documentos_producto($id_producto) {
+
+        $sql = "SELECT d.*
+                FROM producto_documento d
+                WHERE d.id_producto= $id_producto LIMIT 1";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
 }
