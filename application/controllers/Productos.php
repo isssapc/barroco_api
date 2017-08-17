@@ -14,6 +14,16 @@ class Productos extends MY_Controller {
         $this->response($datos);
     }
 
+    public function get_productos_salidas_get() {
+        $datos = $this->producto->get_productos_salidas();
+        $this->response($datos);
+    }
+
+    public function get_inventario_get() {
+        $datos = $this->producto->get_inventario();
+        $this->response($datos);
+    }
+
     public function get_producto_get($id) {
         $datos = $this->producto->get_one($id);
         $this->response($datos);
@@ -82,8 +92,8 @@ class Productos extends MY_Controller {
         $id_producto = $this->post('id_producto');
         $descripcion = $this->post('descripcion');
 
-       
-        
+
+
         $path = "./upload/productos/" . $id_producto . "/";
 
         if (!file_exists($path)) {
@@ -110,15 +120,15 @@ class Productos extends MY_Controller {
 
             // ini resize ------------------------------------------------
             /*
-            $config['image_library'] = 'gd2';
-            $config['source_image'] = $path . $filename;
-            //$config['create_thumb'] = TRUE;
-            $config['maintain_ratio'] = TRUE;
-            $config['width'] = 1200; //1000
-            //$config['height'] = 900;
-            $this->load->library('image_lib', $config);
-            $this->image_lib->resize();
-            */
+              $config['image_library'] = 'gd2';
+              $config['source_image'] = $path . $filename;
+              //$config['create_thumb'] = TRUE;
+              $config['maintain_ratio'] = TRUE;
+              $config['width'] = 1200; //1000
+              //$config['height'] = 900;
+              $this->load->library('image_lib', $config);
+              $this->image_lib->resize();
+             */
             // fin resize ------------------------------------------------
 
 

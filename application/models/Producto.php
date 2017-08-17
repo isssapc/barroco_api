@@ -15,6 +15,26 @@ class Producto extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_productos_salidas() {
+
+        $sql = "SELECT p.*, c.nombre AS categoria
+                FROM producto p
+                JOIN producto_categoria c ON c.id_producto_categoria= p.id_producto_categoria
+                JOIN producto_entrada pe ON pe.id_producto= p.id_producto";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function get_inventario() {
+
+        $sql = "SELECT p.*, c.nombre AS categoria
+                FROM producto p
+                JOIN producto_categoria c ON c.id_producto_categoria= p.id_producto_categoria
+                JOIN producto_entrada pe ON pe.id_producto= p.id_producto";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     public function get_one($id) {
 
         $sql = "SELECT p.*, c.nombre AS categoria

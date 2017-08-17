@@ -15,8 +15,9 @@ class Entradas extends MY_Controller {
     }
 
     public function get_entrada_get($id) {
-        $datos = $this->entrada->get_one($id);
-        $this->response($datos);
+        $entrada = $this->entrada->get_one($id);
+        $productos = $this->entrada->get_productos($id);
+        $this->response(array("entrada" => $entrada, "productos" => $productos));
     }
 
     public function del_entrada_post($id) {
@@ -31,8 +32,9 @@ class Entradas extends MY_Controller {
     }
 
     public function create_entrada_post() {
-        $entrada = $this->post("entrada");
-        $datos = $this->entrada->create_one($entrada);
+        $num_factura = $this->post("num_factura");
+        $productos = $this->post("productos");
+        $datos = $this->entrada->create_one($num_factura, $productos);
         $this->response($datos);
     }
 
